@@ -14,21 +14,27 @@
   </div>
   <div class="messages-view">
     <div class="container">
-      <!-- <div class="message" *ngFor="let message of messages">
-        <div class="message-author">{{ message.author }}</div>
-        <div class="message-content">{{ message.content }}</div>
-      </div> -->
+      @for (message of messages; track message.id) {
+      <div [class]="`message-wrapper ${message.author}`">
+        <div class="message">
+          <div class="message-author">{{ message.author | titlecase }}</div>
+          <div class="message-content" [innerHTML]="message.content"></div>
+        </div>
+      </div>
+      }
     </div>
 
     <div class="composer">
       <div class="input">
         <textarea
           cdkTextareaAutosize
+          (keypress)="handleMessageKeyPress($event)"
+          [(ngModel)]="userMessage"
           placeholder="Type your message here..."
         ></textarea>
       </div>
       <div class="actions">
-        <button mat-stroked-button>
+        <button mat-stroked-button [disabled]="!this.userMessage" (click)="sendUserMessage()">
           Send
           <mat-icon iconPositionEnd>send</mat-icon>
         </button>
