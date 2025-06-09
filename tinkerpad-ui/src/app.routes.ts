@@ -4,7 +4,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'conversation',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -22,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'conversation',
+    redirectTo: 'home',
     pathMatch: 'full'
   }
 ];
