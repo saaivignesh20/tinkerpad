@@ -1,18 +1,29 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { CommonModule, TitleCasePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { KnowledgeSource, Message } from '../../common/interfaces';
+import { MessageComponent } from '../../components/message/message.component';
+import { KnowledgeSourceItemComponent } from '../../components/knowledge-source-item/knowledge-source-item.component';
 
 /** Home Page Component */
 @Component({
-  selector: 'app-home',
-  imports: [CommonModule, MatButtonModule, CdkTextareaAutosize, MatIcon, FormsModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  selector: 'tp-conversation',
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    CdkTextareaAutosize,
+    MatIcon,
+    FormsModule,
+    MessageComponent,
+    KnowledgeSourceItemComponent
+  ],
+  templateUrl: './conversation.component.html',
+  styleUrl: './conversation.component.scss'
 })
-export class HomeComponent {
+export class ConversationComponent {
   /** Array of Messages for Testing */
   protected readonly messages: Message[] = [
     {
@@ -41,6 +52,22 @@ export class HomeComponent {
     }
   ];
 
+  /** Array of Knowledge Sources for Testing */
+  protected readonly knowledgeSources: KnowledgeSource[] = [
+    {
+      id: '1',
+      name: 'Angular Documentation',
+      type: 'web',
+      url: 'https://angular.io/docs'
+    },
+    {
+      id: '2',
+      name: 'Stack Overflow',
+      type: 'web',
+      url: 'https://stackoverflow.com/questions/tagged/angular'
+    }
+  ];
+
   protected userMessage = '';
 
   /**
@@ -59,22 +86,11 @@ export class HomeComponent {
   protected sendUserMessage(): void {
     if (this.userMessage.trim().length > 0)
       this.messages.push({
-        id: this.messages.length.toString(),
+        id: `${this.messages.length + 1}`,
         author: 'user',
         content: this.userMessage.replace(/\n/, '<br>'),
         timestamp: new Date()
       });
     this.userMessage = '';
   }
-}
-
-/** Type for Message Author */
-type MessageAuthor = 'user' | 'assistant';
-
-/** Interface for Message */
-interface Message {
-  id: string;
-  author: MessageAuthor;
-  content: string;
-  timestamp: Date;
 }

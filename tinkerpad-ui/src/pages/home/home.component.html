@@ -1,0 +1,23 @@
+<header>
+  <div class="title">TinkerPad</div>
+</header>
+
+<main>
+  <div class="content">
+    <div class="greetings">Hello, Saai Vignesh 👋</div>
+
+    <div class="conversations-list">
+      @for (conversationItem of conversationItems; track conversationItem.id) {
+      <div class="conversation" matRipple>
+        <div class="emoji">{{ conversationItem.emoji }}</div>
+        <div class="title">{{ conversationItem.title }}</div>
+        <div class="timestamp">
+          {{ conversationItem.timestamp | date }} · {{ conversationItem.sourceCount }} source{{
+            conversationItem.sourceCount > 1 ? 's' : ''
+          }}
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</main>
