@@ -1,0 +1,6 @@
+<div [class]="`message-wrapper ${message().author}`">
+  <div class="message">
+    <div class="message-author">{{ message().author | titlecase }}</div>
+    <div class="message-content" [innerHTML]="message().content"></div>
+  </div>
+</div>

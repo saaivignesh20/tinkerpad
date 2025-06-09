@@ -1,0 +1,6 @@
+<div class="item" matRipple>
+  <mat-icon [class]="`${item().type}`">{{
+    item().type === 'web' ? 'web' : 'description'
+  }}</mat-icon>
+  <div>{{ item().name }}</div>
+</div>

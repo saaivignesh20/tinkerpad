@@ -11,16 +11,16 @@
         <mat-icon>upload</mat-icon>
       </button>
     </div>
+    <div class="section-body">
+      @for (item of knowledgeSources; track item) {
+      <tp-knowledge-source-item [item]="item"></tp-knowledge-source-item>
+      }
+    </div>
   </div>
   <div class="messages-view">
     <div class="container">
       @for (message of messages; track message.id) {
-      <div [class]="`message-wrapper ${message.author}`">
-        <div class="message">
-          <div class="message-author">{{ message.author | titlecase }}</div>
-          <div class="message-content" [innerHTML]="message.content"></div>
-        </div>
-      </div>
+      <tp-message [message]="message"></tp-message>
       }
     </div>
 

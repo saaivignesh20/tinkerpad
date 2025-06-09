@@ -1,0 +1,33 @@
+:host {
+  .message-wrapper {
+    display: flex;
+
+    .message {
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      margin-bottom: 0.625rem;
+
+      .message-author {
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+    }
+
+    &.user {
+      justify-content: end;
+      .message {
+        background-color: var(--mat-sys-primary-container);
+        border-top-right-radius: 0.25rem;
+        color: var(--mat-sys-on-primary-container);
+      }
+    }
+
+    &.assistant {
+      .message {
+        background-color: var(--mat-sys-secondary-container);
+        border-start-start-radius: 0.25rem;
+        color: var(--mat-sys-on-secondary-container);
+      }
+    }
+  }
+}

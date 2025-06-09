@@ -1,28 +1,28 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    redirectTo: 'conversation',
+    pathMatch: 'full'
   },
   {
     path: 'home',
-    loadComponent: () =>
-      import('./components/home/home.component').then(
-        (comp) => comp.HomeComponent
-      ),
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pages/home/home.component').then((comp) => comp.HomeComponent)
   },
   {
-    path: 'auth',
+    path: 'conversation',
+    canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./components/auth/auth.component').then(
-        (comp) => comp.AuthComponent
-      ),
+      import('./pages/conversation/conversation.component').then(
+        (comp) => comp.ConversationComponent
+      )
   },
   {
     path: '**',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
+    redirectTo: 'conversation',
+    pathMatch: 'full'
+  }
 ];
